@@ -1,9 +1,7 @@
 package learn.hodge.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import learn.hodge.models.SheepValue;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -42,6 +40,11 @@ public class HodgePodgeController {
     @PutMapping("/sheep/{amount}")
     public void increaseSheep(@PathVariable int amount) {
         sheepCount = sheepCount + amount;
+    }
+
+    @PostMapping("/sheep")
+    public void postSheep(@RequestBody SheepValue sheepValue){
+        sheepCount = sheepCount + sheepValue.getAmount();
     }
 
 }
